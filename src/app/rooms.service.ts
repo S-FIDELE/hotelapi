@@ -1,5 +1,9 @@
-import { Injectable } from '@angular/core';
+import { APP_SERVICE_CONFIG } from './AppConfig/appconfig.service';
+import { environment } from '../assets/environments/environment.prod';
+import { Inject, Injectable } from '@angular/core';
 import { RoomList } from './rooms/rooms';
+import { AppConfig } from './AppConfig/appconfig.interface';
+//import {environment} from '../../../environments/environment'; 
 
 @Injectable({
   providedIn: 'root'
@@ -36,12 +40,19 @@ export class RoomsService {
       checkouTime: new Date('07-August-2023'),
       rating: 5.656,
     }
-    // Add more rooms as needed
+
   ];
+constructor(@Inject (APP_SERVICE_CONFIG) private config:AppConfig ) {
+	console.log(this.config.apiEndpoint); 
+	console.log("Rooms Service Initialized..."); 
+}
+	
+
+
 
   getRooms() {
     return this.roomList;
   }
 
-  // Other methods and properties
+  
 }
