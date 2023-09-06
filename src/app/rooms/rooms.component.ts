@@ -1,5 +1,6 @@
 import { HeaderComponent } from './../header/header.component';
 import { AfterViewChecked, AfterViewInit, Component, OnDestroy, OnInit, QueryList,
+	 SkipSelf,
 	 ViewChild, ViewChildren } from '@angular/core';
 import { Room, RoomList } from './rooms';
 import { RoomsService } from '../rooms.service';
@@ -26,7 +27,7 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked, 
   roomList: RoomList[] = [];
 	headerComponent: any;
 
-  constructor(private roomsService: RoomsService) {}
+  constructor(@SkipSelf() private roomsService: RoomsService) {}
 	ngAfterViewInit(): void {
 		throw new Error('Method not implemented.');
 	}
@@ -63,5 +64,5 @@ export class RoomsComponent implements OnInit, AfterViewInit, AfterViewChecked, 
     this.roomList.push(room);
   }
 
-  // Other lifecycle hooks and methods
+  
 }
